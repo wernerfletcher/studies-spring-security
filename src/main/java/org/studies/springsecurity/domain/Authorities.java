@@ -6,6 +6,7 @@ import org.studies.springsecurity.security.SecurityUser;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "authorities")
 public class Authorities implements GrantedAuthority {
 
     @Id
@@ -13,6 +14,9 @@ public class Authorities implements GrantedAuthority {
     @Column(name = "id", nullable = false)
     private Long id;
     private String authority;
+    @Transient
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private SecurityUser user;
 
 
@@ -33,7 +37,6 @@ public class Authorities implements GrantedAuthority {
         this.authority = authority;
     }
 
-    @ManyToOne
     public SecurityUser getUser() {
         return user;
     }

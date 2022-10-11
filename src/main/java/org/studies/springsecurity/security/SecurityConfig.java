@@ -44,7 +44,7 @@ public class SecurityConfig {
         // This is to make the H2 console display properly
         http.headers()
                 .frameOptions()
-                .disable();
+                .sameOrigin();
 
         return http.build();
     }
